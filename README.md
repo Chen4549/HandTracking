@@ -29,8 +29,8 @@ Modify lines in the script [Tracking.py](Tracking.py#L137-L145)
     output_dir = 'segmented_frames' #Output folder
 ```
 Above is the variable need to be adjusted:  
--"sam2_checkpoint" is the path to the weight.  
--"mdoel_cfg" is the model config which is under the folder 'configs/sam2.1'.  
--"video_dir" is the directory that contains all the frames.  
--"point_dict" is the coordinate of the 'clicks' for both positive and negative clicks.  
--"output_dir" is the desired output path, where it will save the segmented frame for the video.
+- "sam2_checkpoint" is the path to the weight.  
+- "mdoel_cfg" is the model config which is under the folder 'configs/sam2.1'.  
+- "video_dir" is the directory that contains all the frames.  
+- "point_dict" is the coordinate of the 'clicks' for both positive and negative clicks.  
+- "output_dir" is the desired output path, where it will save the segmented frame for the video.
