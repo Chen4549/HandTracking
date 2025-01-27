@@ -16,7 +16,7 @@ In this project, I used this model checkpoint, which is the large one. Here is t
 
 # Run the script
 Before running the script, adjust some variable as needed.
-Modify lines in the script [Tracking.py](Tracking.py#L137)
+Modify lines in the script [Tracking.py](Tracking.py#L137-L145)
 ```bash
     sam2_checkpoint = '/home/hc4549/HandTracking/sam2.1_hiera_large.pt' #Weight path (downloaded from official SAM web)
     model_cfg = 'configs/sam2.1/sam2.1_hiera_l.yaml' #Config path
@@ -27,3 +27,10 @@ Modify lines in the script [Tracking.py](Tracking.py#L137)
                   0 : [[630,100]]}
 
     output_dir = 'segmented_frames' #Output folder
+```
+Above is the variable need to be adjusted:
+sam2_checkpoint is the path to the weight.
+mdoel_cfg is the model config which is under the folder 'configs/sam2.1'.
+video_dir is the directory that contains all the frames.
+point_dict is the coordinate of the 'clicks' for both positive and negative clicks.
+output_dir is the desired output path, where it will save the segmented frame for the video.
