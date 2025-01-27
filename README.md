@@ -9,4 +9,6 @@ The rest of the dependencies can be installed using below:
 git clone https://github.com/Chen4549/HandTracking.git && cd HandTracking
 conda env create -f environment.yml
 ```
-# The environment is now ready!
+The environment is now ready!
+# Run the script
+Modify lines in the script [Tracking.py](Tracking.py#138)
