@@ -57,6 +57,7 @@ def show_points(coords, labels, ax, marker_size=200):
 def assign_point(video_dir, point_dict):
     global predictor, frame_names
 
+    os.makedirs("annotated_frame", exist_ok=True)
     frame_names = [
         p for p in os.listdir(video_dir)
         if os.path.splitext(p)[-1] in [".jpg", ".jpeg", ".JPG", ".JPEG"]
