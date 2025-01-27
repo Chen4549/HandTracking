@@ -37,6 +37,6 @@ Above is the variable need to be adjusted:
 
 # Result
 The segmented video is in the repo:  
-[Segmented Video](output_video.mp4)
+[Segmented Video](output_video.mp4)  
 I also made a segmented video that isolate the hands in the video, which is here:  
 [Isolated Video](isolated.mp4)
