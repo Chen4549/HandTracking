@@ -15,4 +15,7 @@ In this project, I used this model checkpoint, which is the large one. Here is t
 [sam2.1_hiera_large.pt](https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_large.pt)
 
 # Run the script
+Before running the script, adjust some variable as needed.
 Modify lines in the script [Tracking.py](Tracking.py#137)
+```bash
+
