@@ -10,5 +10,9 @@ git clone https://github.com/Chen4549/HandTracking.git && cd HandTracking
 conda env create -f environment.yml
 ```
 The environment is now ready!
+# Download the weights to local
+In this project, I used this model checkpoint, which is the large one. Here is the download link below.
+[sam2.1_hiera_large.pt](https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_large.pt)
+
 # Run the script
-Modify lines in the script [Tracking.py](Tracking.py#138)
+Modify lines in the script [Tracking.py](Tracking.py#137)
