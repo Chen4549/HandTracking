@@ -34,3 +34,9 @@ Above is the variable need to be adjusted:
 - "video_dir" is the directory that contains all the frames.  
 - "point_dict" is the coordinate of the 'clicks' for both positive and negative clicks.  
 - "output_dir" is the desired output path, where it will save the segmented frame for the video.
+
+# Result
+The segmented video is in the repo:  
+[Segmented Video](output_video.mp4)
+I also made a segmented video that isolate the hands in the video, which is here:  
+[Isolated Video](isolated.mp4)
