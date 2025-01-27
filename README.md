@@ -16,6 +16,14 @@ In this project, I used this model checkpoint, which is the large one. Here is t
 
 # Run the script
 Before running the script, adjust some variable as needed.
-Modify lines in the script [Tracking.py](Tracking.py#137)
+Modify lines in the script [Tracking.py](Tracking.py#L137)
 ```bash
+    sam2_checkpoint = '/home/hc4549/HandTracking/sam2.1_hiera_large.pt' #Weight path (downloaded from official SAM web)
+    model_cfg = 'configs/sam2.1/sam2.1_hiera_l.yaml' #Config path
 
+    video_dir = 'videoframe' #Directory that contian all the frames
+    #"Clicks" coordination, should be in this form, 1 means positive click, while 0 means negative click.
+    point_dict = {1 : [[580, 200],[800,400],[200,600],[900,700]], 
+                  0 : [[630,100]]}
+
+    output_dir = 'segmented_frames' #Output folder
