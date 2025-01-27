@@ -19,9 +19,7 @@ else:
 print(f"using device: {device}")
 
 if device.type == "cuda":
-    # use bfloat16 for the entire notebook
     torch.autocast("cuda", dtype=torch.float16).__enter__()
-    # turn on tfloat32 for Ampere GPUs (https://pytorch.org/docs/stable/notes/cuda.html#tensorfloat-32-tf32-on-ampere-devices)
     if torch.cuda.get_device_properties(0).major >= 8:
         torch.backends.cuda.matmul.allow_tf32 = True
         torch.backends.cudnn.allow_tf32 = True
@@ -34,8 +32,6 @@ elif device.type == "mps":
 
 
 def model_setup(sam2_checkpoint, model_cfg):
-    # sam2_checkpoint = "/home/hc4549/HandTracking/samLarge.pt"
-    # model_cfg = "configs/sam2.1/sam2.1_hiera_l.yaml"
     global predictor
 
     predictor = build_sam2_video_predictor(model_cfg, sam2_checkpoint, device=device)
@@ -60,19 +56,12 @@ def show_points(coords, labels, ax, marker_size=200):
 
 def assign_point(video_dir, point_dict):
     global predictor, frame_names
-    # video_dir = 'videoframe'
 
     frame_names = [
         p for p in os.listdir(video_dir)
         if os.path.splitext(p)[-1] in [".jpg", ".jpeg", ".JPG", ".JPEG"]
     ]
     frame_names.sort(key=lambda p: int(os.path.splitext(p)[0]))
-
-    # take a look the first video frame
-    # frame_idx = 0
-    # plt.figure(figsize=(9, 6))
-    # plt.title(f"frame {frame_idx}")
-    # plt.imshow(Image.open(os.path.join(video_dir, frame_names[frame_idx])))
 
     inference_state = predictor.init_state(video_path=video_dir)
     predictor.reset_state(inference_state)
@@ -86,7 +75,7 @@ def assign_point(video_dir, point_dict):
     point_order = point_dict[1] + point_dict[0]
     point_PosNeg = [1] * p_len + [0] * n_len
 
-    # Let's add a positive click at (x, y) = (210, 350) to get started
+    # Add points
     # points = np.array([[580, 200],[800,400],[200,600],[900,700],[630,100]], dtype=np.float32)
     points = np.array(point_order, dtype=np.float32)
 
@@ -111,14 +100,13 @@ def assign_point(video_dir, point_dict):
     output_image_path = f"./annotated_frame/output_frame_{ann_frame_idx}.png"
     plt.savefig(output_image_path, bbox_inches="tight")
 
-    print("Annotation output successfully.")
+    print(f"Annotation saved to './annotated_frame/output_frame_{ann_frame_idx}.png'.")
 
     return inference_state
 
 def seg(output_dir, video_dir, inference_state, vis_frame_stride):
     global frame_names
 
-    # output_dir = "segmented_frames"
     os.makedirs(output_dir, exist_ok=True)
 
     video_segments = {}  # video_segments contains the per-frame segmentation results
@@ -146,7 +134,7 @@ def seg(output_dir, video_dir, inference_state, vis_frame_stride):
 
 
 if __name__ == "__main__":
-    sam2_checkpoint = '/home/hc4549/HandTracking/samLarge.pt' #Weight path (downloaded from official SAM web)
+    sam2_checkpoint = '/home/hc4549/HandTracking/sam2.1_hiera_large.pt' #Weight path (downloaded from official SAM web)
     model_cfg = 'configs/sam2.1/sam2.1_hiera_l.yaml' #Config path
 
     video_dir = 'videoframe' #Directory that contian all the frames
@@ -164,4 +152,4 @@ if __name__ == "__main__":
     inference_state = assign_point(video_dir, point_dict) 
 
     #After making sure the first frame is segmented correctly, cotinue below function, it will output all the segmented frames in the output_dir.
-    # seg(output_dir, video_dir, inference_state, vis_frame_stride=1) #vis_frame means how many frame user want to output, 1=output every frame, 30=output one every 30 frames.
+    seg(output_dir, video_dir, inference_state, vis_frame_stride=1) #vis_frame means how many frame user want to output, 1=output every frame, 30=output one every 30 frames.
