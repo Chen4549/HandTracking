@@ -6,4 +6,7 @@ Please follow the instruction [here](https://pytorch.org/get-started/locally/) t
 The rest of the dependencies can be installed using below:
 
 ```bash
-git clone https://github.com/Chen4549/HandTracking.git
+git clone https://github.com/Chen4549/HandTracking.git && cd HandTracking
+conda env create -f environment.yml
+
+# The environment is now ready!
